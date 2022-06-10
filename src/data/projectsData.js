@@ -6,6 +6,7 @@ import five from '../assets/svg/projects/five.svg'
 import six from '../assets/svg/projects/six.svg'
 import seven from '../assets/svg/projects/seven.svg'
 import eight from '../assets/svg/projects/eight.svg'
+import project1 from '../media/Screen Shot.png'
 
 
 export const projectsData = [
@@ -16,7 +17,7 @@ export const projectsData = [
         tags: ['React', 'CSS', 'daiy Ui', 'Addmin plene', 'Firebase'],
         code: 'https://github.com/NORULISLAM/manufacture-web-client-side',
         demo: 'https://car-solutions-91752.web.app/',
-        image: one
+        image: project1
     },
     {
         id: 2,

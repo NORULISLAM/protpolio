@@ -1,4 +1,4 @@
-import React,{ useContext} from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import { HiArrowRight } from "react-icons/hi";
@@ -14,16 +14,16 @@ function Blog() {
     const { theme } = useContext(ThemeContext);
 
     const useStyles = makeStyles(() => ({
-        viewAllBtn : {
-            color: theme.tertiary, 
+        viewAllBtn: {
+            color: theme.tertiary,
             backgroundColor: theme.primary,
             "&:hover": {
-                color: theme.secondary, 
+                color: theme.secondary,
                 backgroundColor: theme.primary,
             }
         },
-        viewArr : {
-            color: theme.tertiary, 
+        viewArr: {
+            color: theme.tertiary,
             backgroundColor: theme.secondary70,
             width: '40px',
             height: '40px',
@@ -32,7 +32,7 @@ function Blog() {
             borderRadius: '50%',
             cursor: 'pointer',
             "&:hover": {
-                color: theme.tertiary, 
+                color: theme.tertiary,
                 backgroundColor: theme.secondary,
             }
         },
@@ -43,13 +43,17 @@ function Blog() {
     return (
         <>
             {blogData.length > 0 && (
-                <div className="blog" id="blog" style={{backgroundColor: theme.secondary}}>
+                <div className="blog" id="blog" style={{ backgroundColor: theme.secondary }}>
                     <div className="blog--header">
-                        <h1 style={{color: theme.primary}}>Blog</h1>
+                        <h1 style={{ color: theme.primary }}>Blog</h1>
                     </div>
                     <div className="blog--body">
                         <div className="blog--bodyContainer">
-                            {blogData.slice(0, 3).reverse().map(blog => (
+
+
+
+                            <img src="https://static.wixstatic.com/media/a5c8e2_71d1812b2d424917ac5aeaf0a069004e~mv2.gif" alt="" />
+                            {/* {blogData.slice(0, 3).reverse().map(blog => (
                                 <SingleBlog 
                                     theme={theme}
                                     title={blog.title}
@@ -60,10 +64,10 @@ function Blog() {
                                     key={blog.id}
                                     id={blog.id}
                                 />
-                            ))}
-                        </div> 
+                            ))} */}
+                        </div>
 
-                        {blogData.length > 3 && (
+                        {/* {blogData.length > 3 && (
                             <div className="blog--viewAll">
                                 <Link to="/blog">
                                     <button className={classes.viewAllBtn}>
@@ -72,7 +76,7 @@ function Blog() {
                                     </button>
                                 </Link>
                             </div>
-                        )}
+                        )} */}
                     </div>
                 </div>
             )}

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Snackbar, IconButton, SnackbarContent } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import axios from 'axios';
@@ -26,6 +26,10 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 import { socialsData } from '../../data/socialsData';
 import { contactsData } from '../../data/contactsData';
 import './Contacts.css';
+import emailjs from '@emailjs/browser';
+
+
+
 
 function Contacts() {
     const [open, setOpen] = useState(false);
@@ -125,39 +129,61 @@ function Contacts() {
                 backgroundColor: theme.tertiary,
             },
         },
+
     }));
 
     const classes = useStyles();
 
-    const handleContactForm = (e) => {
+    const form = useRef();
+    // const handleContactForm = (e) => {
+    //     e.preventDefault();
+
+    //     emailjs.sendForm('service_xsjbd98', 'template_1gky5tj', form.current, 'r73Ml0rzmpbHenriK')
+    //         .then((result) => {
+    //             console.log(result.text);
+    //         }, (error) => {
+    //             console.log(error.text);
+    //         });
+
+    // if (name && email && message) {
+    //     if (isEmail(email)) {
+    //         const responseData = {
+    //             name: name,
+    //             email: email,
+    //             message: message,
+    //         };
+
+    //         axios.post(contactsData.sheetAPI, responseData).then((res) => {
+    //             console.log('success');
+    //             setSuccess(true);
+    //             setErrMsg('');
+
+    //             setName('');
+    //             setEmail('');
+    //             setMessage('');
+    //             setOpen(false);
+    //         });
+    //     } else {
+    //         setErrMsg('Invalid email');
+    //         setOpen(true);
+    //     }
+    // } else {
+    //     setErrMsg('Enter all the fields');
+    //     setOpen(true);
+    // }
+    // };
+
+    const sendEmail = (e) => {
         e.preventDefault();
 
-        if (name && email && message) {
-            if (isEmail(email)) {
-                const responseData = {
-                    name: name,
-                    email: email,
-                    message: message,
-                };
+        emailjs.sendForm('service_xsjbd98', 'template_1gky5tj', form.current, 'r73Ml0rzmpbHenriK')
+            .then((result) => {
+                console.log(result.text);
 
-                axios.post(contactsData.sheetAPI, responseData).then((res) => {
-                    console.log('success');
-                    setSuccess(true);
-                    setErrMsg('');
+            }, (error) => {
+                console.log(error.text);
+            });
 
-                    setName('');
-                    setEmail('');
-                    setMessage('');
-                    setOpen(false);
-                });
-            } else {
-                setErrMsg('Invalid email');
-                setOpen(true);
-            }
-        } else {
-            setErrMsg('Enter all the fields');
-            setOpen(true);
-        }
     };
 
     return (
@@ -170,13 +196,13 @@ function Contacts() {
                 <h1 style={{ color: theme.primary }}>Contacts</h1>
                 <div className='contacts-body'>
                     <div className='contacts-form'>
-                        <form onSubmit={handleContactForm}>
+                        <form ref={form} onSubmit={sendEmail}>
                             <div className='input-container'>
                                 <label htmlFor='Name' className={classes.label}>
                                     Name
                                 </label>
                                 <input
-                                    placeholder='Norul Islam'
+                                    placeholder='Your Name'
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     type='text'
@@ -192,7 +218,7 @@ function Contacts() {
                                     Email
                                 </label>
                                 <input
-                                    placeholder='norulislamr16@yahoo.co.jp'
+                                    placeholder='Your Email'
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     type='email'
@@ -248,6 +274,7 @@ function Contacts() {
                                 </button>
                             </div>
                         </form>
+
                         <Snackbar
                             anchorOrigin={{
                                 vertical: 'top',
@@ -432,6 +459,7 @@ function Contacts() {
                 alt='contacts'
                 className='contacts--img'
             />
+
         </div>
     );
 }
