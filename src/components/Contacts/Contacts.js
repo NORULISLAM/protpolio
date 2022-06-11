@@ -176,11 +176,15 @@ function Contacts() {
     const sendEmail = (e) => {
         e.preventDefault();
 
-        emailjs.sendForm('service_xsjbd98', 'template_1gky5tj', form.current, 'r73Ml0rzmpbHenriK')
+        emailjs.sendForm('service_xsjbd98', 'template_nsd4ijo', form.current, 'r73Ml0rzmpbHenriK')
             .then((result) => {
+                alert("Message Sent, We will get back to you shortly", result.text);
+
                 console.log(result.text);
 
             }, (error) => {
+                alert("An error occurred, Please try again", error.text);
+
                 console.log(error.text);
             });
 
